@@ -1,0 +1,265 @@
+/*Mixins and Essentials*/
+
+$sans: "Roboto", sans-serif;
+$mono: "Inconsolata", sans-serif;
+
+$light-gray: #e8eef1;
+$tab-gray: #d3dde1;
+$text-light: #a1b0b9;
+$text-dark: #2a3135;
+$primary-color: #ff6678;
+$dark: #4c535b;
+
+$trash-can: #a1b0b9;
+$trash-border: #848e95;
+
+$blue: #669aff;
+$green: #57bd92;
+$purple: #5965d6;
+$yellow: #ffaf66;
+$highlight: #ffc38b;
+$overlap: #ffc38b;
+
+@mixin transition($time) {
+  -webkit-transition: all$time ease;
+  -moz-transition: all$time ease;
+  -o-transition: all$time ease;
+  transition: all$time ease;
+}
+
+@mixin smoothtransition($time) {
+  -webkit-transition: all$time cubic-bezier(0.43, 0.13, 0.15, 0.99);
+  -moz-transition: all$time cubic-bezier(0.43, 0.13, 0.15, 0.99);
+  -o-transition: all$time cubic-bezier(0.43, 0.13, 0.15, 0.99);
+  transition: all$time cubic-bezier(0.43, 0.13, 0.15, 0.99);
+}
+
+body {
+  margin: 0;
+}
+
+.run {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #fff;
+  z-index: 1000;
+
+  button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $blue;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 15px 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+}
+
+@keyframes blink {
+  0% {
+    height: 30px;
+  }
+  45% {
+    top: 18%;
+    height: 30px;
+  }
+  50% {
+    top: calc(18% + 15px);
+    height: 0px;
+  }
+  55% {
+    top: 18%;
+    height: 30px;
+  }
+  100% {
+    height: 30px;
+  }
+}
+
+.projection-screen {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: #fff;
+
+  .animation-expression {
+    display: none;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  .animation-stick-figure {
+    display: none;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  .connected {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 15px;
+    width: 15px;
+    background: $green;
+    border-radius: 100%;
+    z-index: 1000;
+  }
+}
+
+.animation-expression {
+  width: 120px;
+  height: 120px;
+  background: #eee;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 100%;
+  background: #f0c87c;
+  transform: translate(-50%, -50%);
+  box-shadow: inset -10px -15px 0px rgba(0, 0, 0, 0.05);
+
+  .eye-left {
+    position: absolute;
+    top: 18%;
+    left: 22%;
+    width: 15px;
+    height: 30px;
+    border-radius: 100%;
+    background: $text-dark;
+    animation: blink 4s ease infinite;
+    @include smoothtransition(0.5s);
+  }
+
+  .eye-right {
+    position: absolute;
+    top: 18%;
+    right: 22%;
+    width: 15px;
+    height: 30px;
+    border-radius: 100%;
+    background: $text-dark;
+    animation: blink 4s ease infinite;
+    @include smoothtransition(0.5s);
+  }
+
+  .brow-left {
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 25%;
+    height: 7px;
+    border-radius: 10px;
+    background: $text-dark;
+    transform-origin: center center;
+    transform: rotate(-10deg);
+    @include smoothtransition(0.5s);
+  }
+
+  .brow-right {
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: 25%;
+    height: 7px;
+    border-radius: 10px;
+    background: $text-dark;
+    transform-origin: center center;
+    transform: rotate(10deg);
+    @include smoothtransition(0.5s);
+  }
+
+  #mouth {
+    width: 60px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+
+button.fill {
+  margin: 10px 16px;
+  padding: 10px;
+  font-size: 0.75em;
+  border: none;
+  outline: none;
+  background: $primary-color;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  @include transition(0.5s);
+}
+
+button.fill.generate-motor-block {
+  background: $blue;
+  margin: 20px 0px;
+}
+
+button.fill.test-motor-params {
+  background: $text-light;
+}
+
+button.fill:hover {
+  box-shadow: 0px 0px 0px 0.3rem rgba(0, 0, 0, 0.05);
+}
+
+@keyframes sprite {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -375px;
+  }
+}
+
+.animation-stick-figure {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75px;
+  height: 125px;
+}
+
+.stick-figure {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-size: 450px 125px;
+}
+
+.walking {
+  display: block;
+  background-image: url("https://abhinavthukral97.github.io/madaari-projector/img/Walking.jpg");
+  animation: sprite 0.45s steps(5) infinite;
+}
+
+.running {
+  background-image: url("https://abhinavthukral97.github.io/madaari-projector/img/Running.jpg");
+  animation: sprite 0.3s steps(5) infinite;
+}
+
+.jumping {
+  background-image: url("https://abhinavthukral97.github.io/madaari-projector/img/Jumping.jpg");
+  animation: sprite 0.4s steps(5) infinite;
+}
+
+.stickers {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-height: 80%;
+  max-width: 80%;
+  transform: translate(-50%, -50%);
+}
