@@ -125,7 +125,7 @@ function stickFigureJump() {
 }
 
 function selectSticker(pack, sticker) {
-  $("img.stickers").attr("src", `/img/${pack}/${sticker}.jpeg`);
+  $("img.stickers").attr("src", `/madaari-screen/img/${pack}/${sticker}.jpeg`);
 }
 
 function selectAvatar(name) {
