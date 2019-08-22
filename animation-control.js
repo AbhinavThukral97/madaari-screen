@@ -124,6 +124,10 @@ function stickFigureJump() {
   $(".jumping").css("display", "block");
 }
 
+function selectSticker(pack, sticker) {
+  $("img.stickers").attr("src", `/img/${pack}/${sticker}.jpeg`);
+}
+
 function selectAvatar(name) {
   let index = avatars.indexOf(name);
   if (index > -1) {
